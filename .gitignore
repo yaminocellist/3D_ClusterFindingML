@@ -1,13 +1,6 @@
 # Large Data Files
 *.root
-*.csv
 *.ntuple
-*.pdf
-*.png
-
-# Allow specific documentation/articles if needed
-!Articles/*.pdf
-!Visualizing/images/*.png
 
 # Python
 __pycache__/
