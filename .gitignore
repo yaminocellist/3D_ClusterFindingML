@@ -1,0 +1,47 @@
+# Large Data Files
+*.root
+*.csv
+*.ntuple
+*.pdf
+*.png
+
+# Allow specific documentation/articles if needed
+!Articles/*.pdf
+!Visualizing/images/*.png
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv
+venv/
+ENV/
+env/
+.env
+.ipynb_checkpoints/
+
+# ROOT/C++
+*.so
+*.d
+*.pcm
+*.pcm
+*.dwo
+*.o
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project Specific
+memory/
