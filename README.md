@@ -5,6 +5,34 @@ A Machine Learning project focused on identifying and reconstructing 3D clusters
 ## 🔗 Project Resources
 *   **Shared Project Documentation:** [Google Docs Link - Placeholder]
 
+## 🔬 Dataset Properties & Geometry (Sanity Checks)
+Through empirical analysis of the `ntp_hit` ROOT tree, the following sPHENIX detector properties have been established for the Machine Learning pipeline:
+
+### 1. Detector Subsystem Mapping
+The dataset contains hits from multiple sub-detectors. They are mapped by `layer`:
+*   **MVTX (Inner Silicon Pixels):** Layers 0, 1, 2
+*   **INTT (Silicon Strips):** Layers 3, 4, 5, 6
+*   **TPC (Gas Drift Volume):** Layers 7 through 54
+*   **TPOT (Micromegas):** Layers 55, 56
+
+### 2. TPC Coordinate Relationships
+For the **TPC (Layers 7-54)**, the empirical formulas used to generate the spatial coordinates are:
+*   **Radius (`r`):** Strictly fixed per layer (Standard Deviation = 0.0 cm). The `layer` integer acts as a perfect 1:1 lookup for the physical radius.
+*   **X & Y:** Calculated from the continuous physical radius `r` (not the discrete `layer` index).
+    *   `x = r * cos(phi)`
+    *   `y = r * sin(phi)`
+*   **Z:** Calculated linearly from drift time (`tbin`), dependent on the `zelem` branch (which indicates the side of the central membrane):
+    *   If `zelem == 0`: `z = 0.42341 * tbin + 0.28000`
+    *   If `zelem == 1`: `z = -0.42341 * tbin + 102.60500`
+
+### 3. Bulletproof Data Cleaning Cuts
+To isolate pure, physical TPC hits for ML training, the following cuts must be applied sequentially to the `ntp_hit` DataFrame:
+1.  `layer >= 7 & layer <= 54`: Isolates the TPC.
+2.  `hitID > 0`: Removes background/noise hits.
+3.  `adc > 0`: Removes zero-energy ghost hits/artifacts.
+4.  `dropna()`: Removes NaNs (which mostly populate the outer TPOT layers).
+5.  `zelem.isin([0, 1])`: Enforces valid TPC geometry bounds.
+
 ## 🚀 ML Training Pipeline
 The project follows a three-stage strategy to ensure robust cluster identification:
 
