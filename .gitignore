@@ -40,3 +40,5 @@ Thumbs.db
 memory/
 ML_Ground_Truth_Hits.csv
 GroundTruth_Making/*.csv
+
+*_backup*
