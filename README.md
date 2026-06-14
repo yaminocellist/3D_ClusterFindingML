@@ -1,5 +1,11 @@
 # 3D_ClusterFindingML
 
+Use Singularity for using official sPHENIX geometry and conditioned DB: 
+https://github.com/sPHENIX-Collaboration/Singularity
+
+Without a bnl account, the only way is to use a 2022 ana based on gcc=8.3, as the README.md says in the above repo.
+Some open-sourced CDB are collected targeting a combination of the ideal geometry for simulation usage.
+
 A Machine Learning project focused on identifying and reconstructing 3D clusters within the **sPHENIX TPC** detector using real data. This project aims to bridge the gap between traditional reconstruction and modern deep learning by creating a manually labeled Ground Truth dataset.
 
 ## 🔗 Project Resources
