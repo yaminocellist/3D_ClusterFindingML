@@ -20,8 +20,8 @@ set -euo pipefail
 
 IMG=/cvmfs/sphenix.opensciencegrid.org/singularity/rhic_sl7_ext
 SETUP=/cvmfs/sphenix.opensciencegrid.org/gcc-8.3/opt/sphenix/core/bin/sphenix_setup.sh
-MACRODIR="$HOME/sPHENIX/macros-offline/detectors/sPHENIX"
-MACRO="${1:-plot_trackers.C}"
+MACRODIR="$HOME/sPHENIX/3D_ClusterFindingML/macros-offline/detectors/sPHENIX"
+MACRO="${1:-plot_trackers_ver2.C}"
 
 if [[ ! -e /cvmfs/sphenix.opensciencegrid.org ]]; then
   echo "ERROR: CVMFS not mounted. Try: cvmfs_config probe sphenix.opensciencegrid.org" >&2

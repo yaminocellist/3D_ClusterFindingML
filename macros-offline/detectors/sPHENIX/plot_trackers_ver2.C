@@ -47,7 +47,7 @@ R__LOAD_LIBRARY(libffamodules.so)
 //       clustering / tracking / global / centrality / jets / calos — those reach
 //       the BNL conditions DB (MakeActsGeometry alignment, etc.) and crash with
 //       no network. Pure G4 truth-level display only. See sphenix_display.sh.
-int plot_trackers(
+int plot_trackers_ver2(
     const int nEvents = 1,
     const string &inputFile = "https://www.phenix.bnl.gov/WWW/publish/phnxbld/sPHENIX/files/sPHENIX_G4Hits_sHijing_9-11fm_00000_00010.root",
     const string &outputFile = "G4sPHENIX.root",
@@ -144,7 +144,7 @@ int plot_trackers(
   // add the settings for other with [1], next with [2]...
   if (Input::SIMPLE)
   {
-    INPUTGENERATOR::SimpleEventGenerator[0]->add_particles("pi-", 5);
+    INPUTGENERATOR::SimpleEventGenerator[0]->add_particles("pi-", 30);
     if (Input::HEPMC || Input::EMBED)
     {
       INPUTGENERATOR::SimpleEventGenerator[0]->set_reuse_existing_vertex(true);
