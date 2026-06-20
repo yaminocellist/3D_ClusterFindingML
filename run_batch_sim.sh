@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 #
-# sphenix_display.sh - sPHENIX tracker geometry / event display
+# run_batch_sim.sh - sPHENIX tracker simulation in batch mode
 #
-# Run this INSIDE your VM desktop session (needs X for the Eve display window).
-#
+
 set -euo pipefail
 
 IMG=/cvmfs/sphenix.opensciencegrid.org/singularity/rhic_sl7_ext
@@ -13,17 +12,18 @@ MACRO="${1:-plot_trackers_ver2.C}"
 CDB_DIR="$HOME/sPHENIX/3D_ClusterFindingML/CDB_offline"
 
 echo "========================================="
-echo "   sPHENIX Interactive Display Config    "
+echo "      sPHENIX Batch Simulation Config    "
 echo "========================================="
 echo "Select CDB Alignment Configuration:"
 echo "1) OFFLINE mode (No DB, Tracker geometry only, fast event display)"
 
 # Find all .txt files in TRACKINGALIGNMENT and store them in an array
+CDB_DIR="./CDB_offline/TRACKINGALIGNMENT"
 files=()
-if [ -d "$CDB_DIR/TRACKINGALIGNMENT" ]; then
+if [ -d "$CDB_DIR" ]; then
     while IFS=  read -r -d $'\0'; do
         files+=("$REPLY")
-    done < <(find "$CDB_DIR/TRACKINGALIGNMENT" -type f -name "*.txt" -print0 | sort -z)
+    done < <(find "$CDB_DIR" -type f -name "*.txt" -print0 | sort -z)
 fi
 
 # Print dynamic options
@@ -39,7 +39,6 @@ done
 read -p "Choice [1]: " CDB_CHOICE
 CDB_CHOICE=${CDB_CHOICE:-1}
 
-export USE_CDB_OFFLINE=0
 if [ "$CDB_CHOICE" == "1" ]; then
     export USE_CDB_OFFLINE=0
 elif [ "$CDB_CHOICE" -gt 1 ] && [ "$CDB_CHOICE" -lt "$idx" ]; then
@@ -48,13 +47,16 @@ elif [ "$CDB_CHOICE" -gt 1 ] && [ "$CDB_CHOICE" -lt "$idx" ]; then
     arr_idx=$((CDB_CHOICE - 2))
     selected_file="${files[$arr_idx]}"
     echo "--> Copying ${selected_file} to localAlignmentParamsFile.txt"
-    cp "${selected_file}" "$MACRODIR/localAlignmentParamsFile.txt"
+    cp "${selected_file}" ./localAlignmentParamsFile.txt
 else
     echo "Invalid choice. Defaulting to OFFLINE mode."
     export USE_CDB_OFFLINE=0
 fi
 
 echo ""
+read -e -p "Number of Events [100]: " NEVENTS
+NEVENTS=${NEVENTS:-100}
+
 read -e -p "Particle Type (e.g. pi-, e-, gamma) [pi-]: " PARTICLE_TYPE
 export PARTICLE_TYPE=${PARTICLE_TYPE:-pi-}
 
@@ -64,14 +66,17 @@ export PARTICLE_COUNT=${PARTICLE_COUNT:-60}
 read -e -p "Particle pT min (GeV/c) [0.1]: " PARTICLE_PT_MIN
 export PARTICLE_PT_MIN=${PARTICLE_PT_MIN:-0.1}
 
-read -e -p "Particle pT max (GeV/c) [20.0] (typically 10.0, medium value 5.0): " PARTICLE_PT_MAX
+read -e -p "Particle pT max (GeV/c) [20.0]: " PARTICLE_PT_MAX
 export PARTICLE_PT_MAX=${PARTICLE_PT_MAX:-20.0}
 
-read -e -p "Magnetic Field (e.g. 1.4, 1.5) [1.4]: " MAG_FIELD
+read -e -p "Magnetic Field (e.g. 1.4, 1.5) [1.5]: " MAG_FIELD
 export MAG_FIELD=${MAG_FIELD:-1.5}
 
+read -p "Output file name [G4sPHENIX.root]: " OUTPUT_FILE
+OUTPUT_FILE=${OUTPUT_FILE:-G4sPHENIX.root}
+
 echo "========================================="
-echo "Starting singularity container..."
+echo "Starting singularity container for batch mode..."
 
 if [[ ! -e /cvmfs/sphenix.opensciencegrid.org ]]; then
   echo "ERROR: CVMFS not mounted. Try: cvmfs_config probe sphenix.opensciencegrid.org" >&2
@@ -82,10 +87,8 @@ if [[ ! -f "$MACRODIR/$MACRO" ]]; then
   exit 1
 fi
 
-# Bind the X11 socket so the Geant4/ROOT Eve window can open on your desktop.
 BINDS=(-B /cvmfs:/cvmfs)
-[[ -d /tmp/.X11-unix ]] && BINDS+=(-B /tmp/.X11-unix:/tmp/.X11-unix)
 
-# If the window is refused, run `xhost +local:` once on the host first.
-exec singularity exec "${BINDS[@]}" --env DISPLAY="${DISPLAY:-:0}" "$IMG" \
-  bash -lc "source '$SETUP' -n ana.331 >/dev/null 2>&1; cd '$MACRODIR' && root -l '$MACRO'"
+# Run ROOT in batch mode (-b -q)
+exec singularity exec "${BINDS[@]}" "$IMG" \
+  bash -lc "source '$SETUP' -n ana.331 >/dev/null 2>&1; cd '$MACRODIR' && root -b -q '${MACRO}(${NEVENTS}, \"\", \"${OUTPUT_FILE}\")'"

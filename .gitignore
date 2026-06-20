@@ -44,6 +44,7 @@ GroundTruth_Making/*.csv
 *_backup*
 Simulations/dataset
 labeled_*
+*.log
 
 CDB_offline/*
 !cdb_manifest.yaml

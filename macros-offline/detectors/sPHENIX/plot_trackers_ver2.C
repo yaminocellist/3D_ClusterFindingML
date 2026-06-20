@@ -144,7 +144,11 @@ int plot_trackers_ver2(
   // add the settings for other with [1], next with [2]...
   if (Input::SIMPLE)
   {
-    INPUTGENERATOR::SimpleEventGenerator[0]->add_particles("pi-", 30);
+    const char *env_ptype = gSystem->Getenv("PARTICLE_TYPE");
+    string ptype = env_ptype ? env_ptype : "pi-";
+    const char *env_pcount = gSystem->Getenv("PARTICLE_COUNT");
+    int pcount = env_pcount ? atoi(env_pcount) : 60;
+    INPUTGENERATOR::SimpleEventGenerator[0]->add_particles(ptype, pcount);
     if (Input::HEPMC || Input::EMBED)
     {
       INPUTGENERATOR::SimpleEventGenerator[0]->set_reuse_existing_vertex(true);
@@ -160,7 +164,11 @@ int plot_trackers_ver2(
     }
     INPUTGENERATOR::SimpleEventGenerator[0]->set_eta_range(-1, 1);
     INPUTGENERATOR::SimpleEventGenerator[0]->set_phi_range(-M_PI, M_PI);
-    INPUTGENERATOR::SimpleEventGenerator[0]->set_pt_range(0.1, 20.);
+    const char *env_ptmin = gSystem->Getenv("PARTICLE_PT_MIN");
+    const char *env_ptmax = gSystem->Getenv("PARTICLE_PT_MAX");
+    double pt_min = env_ptmin ? atof(env_ptmin) : 0.1;
+    double pt_max = env_ptmax ? atof(env_ptmax) : 20.0;
+    INPUTGENERATOR::SimpleEventGenerator[0]->set_pt_range(pt_min, pt_max);
   }
   // Upsilons
   // if you run more than one of these Input::UPSILON_NUMBER > 1
@@ -268,7 +276,7 @@ int plot_trackers_ver2(
   //  Enable::DSTREADER = true;
 
   // turn the display on (default off)
-   Enable::DISPLAY = true;
+   Enable::DISPLAY = !gROOT->IsBatch();
 
   //======================
   // What to run
@@ -423,6 +431,11 @@ int plot_trackers_ver2(
   //  G4MAGNET::magfield = "1.5"; // alternatively to specify a constant magnetic field, give a float number, which will be translated to solenoidal field in T, if string use as fieldmap name (including path)
 //  G4MAGNET::magfield_rescale = 1.;  // make consistent with expected Babar field strength of 1.4T
 
+  const char *env_bfield = gSystem->Getenv("MAG_FIELD");
+  if (env_bfield && string(env_bfield) != "") {
+      G4MAGNET::magfield = env_bfield;
+  }
+
   //---------------
   // Pythia Decayer
   //---------------
@@ -439,18 +452,25 @@ int plot_trackers_ver2(
   // alignment, global vertexing, centrality, jets) and the calorimeters.
   // Pure Geant4 truth-level trajectories + hits are displayed.
   // ===================================================================
-  Enable::QA = false;
+  const char* env_cdb = gSystem->Getenv("USE_CDB_OFFLINE");
+  bool use_cdb = (env_cdb && string(env_cdb) == "1");
 
-  // tracker digitization / clustering / QA off (clustering -> MakeActsGeometry -> DB)
-  Enable::MVTX_CELL = Enable::MVTX_CLUSTER = Enable::MVTX_QA = false;
-  Enable::INTT_CELL = Enable::INTT_CLUSTER = Enable::INTT_QA = false;
-  Enable::TPC_CELL  = Enable::TPC_CLUSTER  = Enable::TPC_QA  = false;
-  Enable::MICROMEGAS_CELL = Enable::MICROMEGAS_CLUSTER = Enable::MICROMEGAS_QA = false;
+  if (!use_cdb || Enable::DISPLAY) {
+      Enable::QA = false;
 
-  // tracking off (Acts geometry / alignment needs the DB)
-  Enable::TRACKING_TRACK = Enable::TRACKING_EVAL = Enable::TRACKING_QA = false;
+      // tracker digitization / clustering / QA off (clustering -> MakeActsGeometry -> DB)
+      Enable::MVTX_CELL = Enable::MVTX_CLUSTER = Enable::MVTX_QA = false;
+      Enable::INTT_CELL = Enable::INTT_CLUSTER = Enable::INTT_QA = false;
+      Enable::TPC_CELL  = Enable::TPC_CLUSTER  = Enable::TPC_QA  = false;
+      Enable::MICROMEGAS_CELL = Enable::MICROMEGAS_CLUSTER = Enable::MICROMEGAS_QA = false;
 
-  // calorimeters off entirely (tracker-only display)
+      // tracking off (Acts geometry / alignment needs the DB)
+      Enable::TRACKING_TRACK = Enable::TRACKING_EVAL = Enable::TRACKING_QA = false;
+  } else {
+      std::cout << ">>> USE_CDB_OFFLINE=1: Re-enabling Tracking & Clustering (using localAlignmentParamsFile) <<<" << std::endl;
+  }
+
+  // calorimeters off entirely (they crash on CDB lookup in ana.331 even with local files)
   Enable::CEMC = Enable::CEMC_ABSORBER = Enable::CEMC_CELL = Enable::CEMC_TOWER =
     Enable::CEMC_CLUSTER = Enable::CEMC_EVAL = Enable::CEMC_QA = false;
   Enable::HCALIN = Enable::HCALIN_ABSORBER = Enable::HCALIN_CELL = Enable::HCALIN_TOWER =

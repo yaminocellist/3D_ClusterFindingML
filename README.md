@@ -6,6 +6,37 @@ https://github.com/sPHENIX-Collaboration/Singularity
 Without a bnl account, the only way is to use a 2022 ana based on gcc=8.3, as the README.md says in the above repo.
 Some open-sourced CDB are collected targeting a combination of the ideal geometry for simulation usage.
 
+# Simulation with frozen ana.331 combining CDB_offlines
+The geometry (ideal one) is frozen and open-sourced in 2022, while 177 open-sourced Conditional DBs are downloaded and can be loaded to the ideal geometry, together with beam and magnetic field configurations.
+The CDB mapping is internal and cannot be accessed without BNL account, but a random combination is considered sufficient for ML training.
+
+# Add offline CDBs as a combination of offline cvmfs
+
+### Geant4 Particle Types                
+ 
+  Common Hadrons:
+  
+  •  pi-  /  pi+  /  pi0  (Pions)
+  •  proton  /  anti_proton 
+  •  neutron  /  anti_neutron 
+  •  kaon+  /  kaon- 
+  
+  Leptons & Photons:
+  
+  •  e-  /  e+  (Electron / Positron)
+  •  mu-  /  mu+  (Muon / Anti-muon)
+  •  gamma  (Photon)
+  
+  Heavy Ions / Nuclei:
+  
+  •  alpha 
+  •  deuteron 
+  •  triton 
+  
+  Debugging:
+  
+  •  geantino
+
 A Machine Learning project focused on identifying and reconstructing 3D clusters within the **sPHENIX TPC** detector using real data. This project aims to bridge the gap between traditional reconstruction and modern deep learning by creating a manually labeled Ground Truth dataset.
 
 ## 🔗 Project Resources
