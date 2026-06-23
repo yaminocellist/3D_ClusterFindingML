@@ -59,30 +59,34 @@ namespace Enable
 namespace G4TPC
 {
   int n_tpc_layer_inner = 16;
-  int tpc_layer_rphi_count_inner = 1152;
+  int tpc_layer_rphi_count_inner = 1128; // 94 * 12
   int n_tpc_layer_mid = 16;
   int n_tpc_layer_outer = 16;
   int n_gas_layer = n_tpc_layer_inner + n_tpc_layer_mid + n_tpc_layer_outer;
   double tpc_outer_radius = 77. + 2.;
 
   // drift velocity is set here for all relevant modules
-  double tpc_drift_velocity_sim= 8.0 / 1000.0;  // cm/ns   // this is the Ne version of the gas
+  double tpc_drift_velocity_sim= 0.007550;  // cm/ns   // this is the ArCF4Isobutane version of the gas
 //  double tpc_drift_velocity_reco now set in GlobalVariables.C
-//  double tpc_drift_velocity_reco= 8.0 / 1000.0;  // cm/ns   // this is the Ne version of the gas
+//  double tpc_drift_velocity_reco= 0.007550;  // cm/ns   // this is the ArCF4Isobutane version of the gas
 
   // use simple clusterizer
   bool USE_SIMPLE_CLUSTERIZER = false;
 
   // distortions
-  bool ENABLE_STATIC_DISTORTIONS = false;
-  auto static_distortion_filename = std::string(getenv("CALIBRATIONROOT")) + "/distortion_maps/static_only.distortion_map.hist.root";
+  bool ENABLE_STATIC_DISTORTIONS = true;
+  auto static_distortion_filename = std::string("/home/yaminocellist/sPHENIX/3D_ClusterFindingML/CDB_offline/TPC_STATIC_DISTORTION/5a/3d/5a3d0b9b5268b8bc6921ddd16e801c8f_static_only.distortion_map.hist.root");
 
-  bool ENABLE_TIME_ORDERED_DISTORTIONS = false;
-  std::string time_ordered_distortion_filename = std::string(getenv("CALIBRATIONROOT")) + "/distortion_maps/TimeOrderedDistortions.root";
+  bool ENABLE_TIME_ORDERED_DISTORTIONS = true;
+  std::string time_ordered_distortion_filename = std::string("/home/yaminocellist/sPHENIX/3D_ClusterFindingML/CDB_offline/TPC_TIMEORDERED_DISTORTION/51/72/51725df52f40ba2f3b5208fdd1bd39c2_TimeOrderedDistortions.root");
 
-  // distortion corrections
-  bool ENABLE_CORRECTIONS = false;
-  auto correction_filename = std::string(getenv("CALIBRATIONROOT")) + "/distortion_maps/static_only_inverted_10-new.root";
+  // distortion corrections (applied during tracking/reco, not during G4 hit generation)
+  bool ENABLE_CORRECTIONS = true;
+  auto correction_filename = std::string("/home/yaminocellist/sPHENIX/3D_ClusterFindingML/CDB_offline/TPC_STATIC_CORRECTION_MODEL/ec/7b/ec7bd756f9fc7274af6b479ee39580e3_static_only_inverted_10-new.root");
+
+  // module-edge distortion corrections (loaded into slot 1 of TpcLoadDistortionCorrection)
+  bool ENABLE_MODULE_EDGE_CORRECTIONS = true;
+  auto module_edge_correction_filename = std::string("/home/yaminocellist/sPHENIX/3D_ClusterFindingML/CDB_offline/TPC_Module_Edge/90/c9/90c95346a3e25a7a0753d71c46becbc6_residual_map_field_layers10iter_2D_acts_static_enabled.hist.root");
 
   // enable central membrane g4hits generation
   bool ENABLE_CENTRAL_MEMBRANE_HITS = false;
@@ -98,8 +102,17 @@ namespace G4TPC
   
   // space charge calibration output file
   std::string DIRECT_LASER_ROOTOUTPUT_FILENAME = "TpcSpaceChargeMatrices.root";
-  std::string DIRECT_LASER_HISTOGRAMOUTPUT_FILENAME = "TpcDirectLaserReconstruction.root"; 
-  
+  std::string DIRECT_LASER_HISTOGRAMOUTPUT_FILENAME = "TpcDirectLaserReconstruction.root";
+
+  // ---- 2026 gas mixture: ArCF4Isobutane (75:20:05) ----
+  // Diffusion constants for ArCF4Isobutane
+  double diffusion_long  = 0.014596;  // cm/sqrt(cm)
+  double diffusion_trans = 0.005313;  // cm/sqrt(cm)
+
+  // Physical TPC drift geometry (2026 measured)
+  double maxDriftLength = 102.325;    // cm, CM face to top of GEM stack
+  double CM_halfwidth   = 0.28;       // cm
+
 }  // namespace G4TPC
 
 void TPCInit()
@@ -162,7 +175,16 @@ double TPC(PHG4Reco* g4Reco,
   tpc->SetActive();
   tpc->SuperDetector("TPC");
   tpc->set_double_param("steplimits", 1);  // 1cm steps
-  
+
+  // 2026 drift geometry: pass maxDriftLength and CM_halfwidth to the subsystem
+  tpc->set_double_param("tpc_length", G4TPC::maxDriftLength * 2 + G4TPC::CM_halfwidth * 2);
+  tpc->set_double_param("maxdriftlength", G4TPC::maxDriftLength);
+
+  // Pass inner-layer binning to subsystem (modern macros do this at subsystem level)
+  tpc->set_int_param("tpc_minlayer_inner", G4MVTX::n_maps_layer + G4INTT::n_intt_layer);
+  tpc->set_int_param("ntpc_layers_inner", G4TPC::n_tpc_layer_inner);
+  tpc->set_int_param("ntpc_phibins_inner", G4TPC::tpc_layer_rphi_count_inner);
+
   if (AbsorberActive)
     {
       tpc->SetAbsorberActive();
@@ -236,7 +258,8 @@ void TPC_Cells()
     edrift->setTpcDistortion( distortionMap );
   }
 
-  double tpc_readout_time = 105.5/ G4TPC::tpc_drift_velocity_sim;  // ns
+  // 2026: use maxDriftLength instead of hardcoded 105.5 cm
+  double tpc_readout_time = G4TPC::maxDriftLength / G4TPC::tpc_drift_velocity_sim;  // ns
   double extended_readout_time = 0.0;
   if(TRACKING::pp_mode) extended_readout_time = TRACKING::pp_extended_readout_time;
   edrift->set_double_param("max_time", tpc_readout_time + extended_readout_time);
@@ -246,9 +269,10 @@ void TPC_Cells()
   edrift->set_double_param("drift_velocity", G4TPC::tpc_drift_velocity_sim);
   padplane->SetDriftVelocity(G4TPC::tpc_drift_velocity_sim);
 
-  // fudge factors to get drphi 150 microns (in mid and outer Tpc) and dz 500 microns cluster resolution
-  // They represent effects not due to ideal gas properties and ideal readout plane behavior
-  // defaults are 0.085 and 0.105, they can be changed here to get a different resolution
+  // 2026 ArCF4Isobutane diffusion constants
+  edrift->set_double_param("diffusion_long", G4TPC::diffusion_long);
+  edrift->set_double_param("diffusion_trans", G4TPC::diffusion_trans);
+
   edrift->registerPadPlane(padplane);
   se->registerSubsystem(edrift);
 

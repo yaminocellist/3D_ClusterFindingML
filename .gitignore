@@ -51,3 +51,12 @@ CDB_offline/*
 !copy_cdb.sh
 !generate_manifest.sh
 !README.md
+
+coresoftware/
+macros-gcc12/
+modern_macros/
+sphenix_macros/
+
+GroundTruth_Making/test_env
+GroundTruth_Making/cluster_ml_env
+GroundTruth_Making/*.yml

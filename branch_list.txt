@@ -1,0 +1,596 @@
+******************************************************************************
+*Tree    :T         : PHG4DSTReader                                          *
+*Entries :        5 : Total =        21357574 bytes  File  Size =   10471448 *
+*        :          : Tree compression factor =   2.03                       *
+******************************************************************************
+*Br    0 :n_G4HIT_MVTX : n_G4HIT_MVTX/I                                      *
+*Entries :        5 : Total  Size=        609 bytes  File Size  =         96 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :G4HIT_MVTX : Int_t G4HIT_MVTX_                                     *
+*Entries :        5 : Total  Size=      10109 bytes  File Size  =        122 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    2 :G4HIT_MVTX.fUniqueID : UInt_t fUniqueID[G4HIT_MVTX_]               *
+*Entries :        5 : Total  Size=       4619 bytes  File Size  =        158 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  25.22     *
+*............................................................................*
+*Br    3 :G4HIT_MVTX.fBits : UInt_t fBits[G4HIT_MVTX_]                       *
+*Entries :        5 : Total  Size=       4599 bytes  File Size  =        179 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  22.23     *
+*............................................................................*
+*Br    4 :G4HIT_MVTX.x[2] : Float_t x[G4HIT_MVTX_]                           *
+*Entries :        5 : Total  Size=       8457 bytes  File Size  =       7245 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br    5 :G4HIT_MVTX.y[2] : Float_t y[G4HIT_MVTX_]                           *
+*Entries :        5 : Total  Size=       8457 bytes  File Size  =       7271 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br    6 :G4HIT_MVTX.z[2] : Float_t z[G4HIT_MVTX_]                           *
+*Entries :        5 : Total  Size=       8457 bytes  File Size  =       7290 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br    7 :G4HIT_MVTX.t[2] : Float_t t[G4HIT_MVTX_]                           *
+*Entries :        5 : Total  Size=       8457 bytes  File Size  =       6974 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br    8 :G4HIT_MVTX.hitid : ULong64_t hitid[G4HIT_MVTX_]                    *
+*Entries :        5 : Total  Size=       8471 bytes  File Size  =       1037 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   7.57     *
+*............................................................................*
+*Br    9 :G4HIT_MVTX.trackid : Int_t trackid[G4HIT_MVTX_]                    *
+*Entries :        5 : Total  Size=       4609 bytes  File Size  =        611 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   6.52     *
+*............................................................................*
+*Br   10 :G4HIT_MVTX.showerid : Int_t showerid[G4HIT_MVTX_]                  *
+*Entries :        5 : Total  Size=       4614 bytes  File Size  =        449 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.87     *
+*............................................................................*
+*Br   11 :G4HIT_MVTX.edep : Float_t edep[G4HIT_MVTX_]                        *
+*Entries :        5 : Total  Size=       4594 bytes  File Size  =       3587 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   12 :G4HIT_MVTX.prop_map :                                              *
+*         | map<unsigned char,unsigned int> prop_map[G4HIT_MVTX_]            *
+*Entries :        5 : Total  Size=      87207 bytes  File Size  =      44117 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   1.96     *
+*............................................................................*
+*Br   13 :G4HIT_MVTX.eion : Float_t eion[G4HIT_MVTX_]                        *
+*Entries :        5 : Total  Size=       4594 bytes  File Size  =        161 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  24.71     *
+*............................................................................*
+*Br   14 :G4HIT_MVTX.scint_id : Int_t scint_id[G4HIT_MVTX_]                  *
+*Entries :        5 : Total  Size=       4614 bytes  File Size  =        164 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  24.29     *
+*............................................................................*
+*Br   15 :G4HIT_MVTX.light_yield : Float_t light_yield[G4HIT_MVTX_]          *
+*Entries :        5 : Total  Size=       4629 bytes  File Size  =        167 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  23.87     *
+*............................................................................*
+*Br   16 :G4HIT_MVTX.path_length : Float_t path_length[G4HIT_MVTX_]          *
+*Entries :        5 : Total  Size=       4629 bytes  File Size  =        167 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  23.87     *
+*............................................................................*
+*Br   17 :n_G4HIT_INTT : n_G4HIT_INTT/I                                      *
+*Entries :        5 : Total  Size=        609 bytes  File Size  =         96 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   18 :G4HIT_INTT : Int_t G4HIT_INTT_                                     *
+*Entries :        5 : Total  Size=      10109 bytes  File Size  =        122 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   19 :G4HIT_INTT.fUniqueID : UInt_t fUniqueID[G4HIT_INTT_]               *
+*Entries :        5 : Total  Size=       3911 bytes  File Size  =        155 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  21.14     *
+*............................................................................*
+*Br   20 :G4HIT_INTT.fBits : UInt_t fBits[G4HIT_INTT_]                       *
+*Entries :        5 : Total  Size=       3891 bytes  File Size  =        171 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  19.13     *
+*............................................................................*
+*Br   21 :G4HIT_INTT.x[2] : Float_t x[G4HIT_INTT_]                           *
+*Entries :        5 : Total  Size=       7041 bytes  File Size  =       5648 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   22 :G4HIT_INTT.y[2] : Float_t y[G4HIT_INTT_]                           *
+*Entries :        5 : Total  Size=       7041 bytes  File Size  =       5692 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   23 :G4HIT_INTT.z[2] : Float_t z[G4HIT_INTT_]                           *
+*Entries :        5 : Total  Size=       7041 bytes  File Size  =       5990 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br   24 :G4HIT_INTT.t[2] : Float_t t[G4HIT_INTT_]                           *
+*Entries :        5 : Total  Size=       7041 bytes  File Size  =       5631 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   25 :G4HIT_INTT.hitid : ULong64_t hitid[G4HIT_INTT_]                    *
+*Entries :        5 : Total  Size=       7055 bytes  File Size  =        863 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   7.46     *
+*............................................................................*
+*Br   26 :G4HIT_INTT.trackid : Int_t trackid[G4HIT_INTT_]                    *
+*Entries :        5 : Total  Size=       3901 bytes  File Size  =       1340 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.44     *
+*............................................................................*
+*Br   27 :G4HIT_INTT.showerid : Int_t showerid[G4HIT_INTT_]                  *
+*Entries :        5 : Total  Size=       3906 bytes  File Size  =        899 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.64     *
+*............................................................................*
+*Br   28 :G4HIT_INTT.edep : Float_t edep[G4HIT_INTT_]                        *
+*Entries :        5 : Total  Size=       3886 bytes  File Size  =       2972 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   29 :G4HIT_INTT.prop_map :                                              *
+*         | map<unsigned char,unsigned int> prop_map[G4HIT_INTT_]            *
+*Entries :        5 : Total  Size=      67408 bytes  File Size  =      39342 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.70     *
+*............................................................................*
+*Br   30 :G4HIT_INTT.eion : Float_t eion[G4HIT_INTT_]                        *
+*Entries :        5 : Total  Size=       3886 bytes  File Size  =       2972 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   31 :G4HIT_INTT.scint_id : Int_t scint_id[G4HIT_INTT_]                  *
+*Entries :        5 : Total  Size=       3906 bytes  File Size  =        162 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  20.22     *
+*............................................................................*
+*Br   32 :G4HIT_INTT.light_yield : Float_t light_yield[G4HIT_INTT_]          *
+*Entries :        5 : Total  Size=       3921 bytes  File Size  =        164 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  19.99     *
+*............................................................................*
+*Br   33 :G4HIT_INTT.path_length : Float_t path_length[G4HIT_INTT_]          *
+*Entries :        5 : Total  Size=       3921 bytes  File Size  =        164 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  19.99     *
+*............................................................................*
+*Br   34 :n_G4HIT_TPC : n_G4HIT_TPC/I                                        *
+*Entries :        5 : Total  Size=        604 bytes  File Size  =         95 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   35 :G4HIT_TPC : Int_t G4HIT_TPC_                                       *
+*Entries :        5 : Total  Size=      10042 bytes  File Size  =        121 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   36 :G4HIT_TPC.fUniqueID : UInt_t fUniqueID[G4HIT_TPC_]                 *
+*Entries :        5 : Total  Size=     200132 bytes  File Size  =       1487 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 134.16     *
+*............................................................................*
+*Br   37 :G4HIT_TPC.fBits : UInt_t fBits[G4HIT_TPC_]                         *
+*Entries :        5 : Total  Size=     200096 bytes  File Size  =       1594 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 125.15     *
+*............................................................................*
+*Br   38 :G4HIT_TPC.x[2] : Float_t x[G4HIT_TPC_]                             *
+*Entries :        5 : Total  Size=     399106 bytes  File Size  =     214340 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.86     *
+*............................................................................*
+*Br   39 :G4HIT_TPC.y[2] : Float_t y[G4HIT_TPC_]                             *
+*Entries :        5 : Total  Size=     399106 bytes  File Size  =     214668 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.86     *
+*............................................................................*
+*Br   40 :G4HIT_TPC.z[2] : Float_t z[G4HIT_TPC_]                             *
+*Entries :        5 : Total  Size=     399106 bytes  File Size  =     215310 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.85     *
+*............................................................................*
+*Br   41 :G4HIT_TPC.t[2] : Float_t t[G4HIT_TPC_]                             *
+*Entries :        5 : Total  Size=     399106 bytes  File Size  =     216512 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.84     *
+*............................................................................*
+*Br   42 :G4HIT_TPC.hitid : ULong64_t hitid[G4HIT_TPC_]                      *
+*Entries :        5 : Total  Size=     399124 bytes  File Size  =      78105 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   5.10     *
+*............................................................................*
+*Br   43 :G4HIT_TPC.trackid : Int_t trackid[G4HIT_TPC_]                      *
+*Entries :        5 : Total  Size=     200114 bytes  File Size  =      24808 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   8.04     *
+*............................................................................*
+*Br   44 :G4HIT_TPC.showerid : Int_t showerid[G4HIT_TPC_]                    *
+*Entries :        5 : Total  Size=     200123 bytes  File Size  =       2828 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=  70.54     *
+*............................................................................*
+*Br   45 :G4HIT_TPC.edep : Float_t edep[G4HIT_TPC_]                          *
+*Entries :        5 : Total  Size=     200087 bytes  File Size  =     179178 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   46 :G4HIT_TPC.prop_map :                                               *
+*         | map<unsigned char,unsigned int> prop_map[G4HIT_TPC_]             *
+*Entries :        5 : Total  Size=    2190443 bytes  File Size  =    1030209 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   2.13     *
+*............................................................................*
+*Br   47 :G4HIT_TPC.eion : Float_t eion[G4HIT_TPC_]                          *
+*Entries :        5 : Total  Size=     200087 bytes  File Size  =     179171 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   48 :G4HIT_TPC.scint_id : Int_t scint_id[G4HIT_TPC_]                    *
+*Entries :        5 : Total  Size=     200123 bytes  File Size  =       1596 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 125.00     *
+*............................................................................*
+*Br   49 :G4HIT_TPC.light_yield : Float_t light_yield[G4HIT_TPC_]            *
+*Entries :        5 : Total  Size=     200150 bytes  File Size  =       1612 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 123.77     *
+*............................................................................*
+*Br   50 :G4HIT_TPC.path_length : Float_t path_length[G4HIT_TPC_]            *
+*Entries :        5 : Total  Size=     200150 bytes  File Size  =       1612 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 123.77     *
+*............................................................................*
+*Br   51 :n_G4HIT_MAGNET : n_G4HIT_MAGNET/I                                  *
+*Entries :        5 : Total  Size=        619 bytes  File Size  =         98 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   52 :G4HIT_MAGNET : Int_t G4HIT_MAGNET_                                 *
+*Entries :        5 : Total  Size=      10243 bytes  File Size  =        124 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   53 :G4HIT_MAGNET.fUniqueID : UInt_t fUniqueID[G4HIT_MAGNET_]           *
+*Entries :        5 : Total  Size=     220617 bytes  File Size  =       1588 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 138.52     *
+*............................................................................*
+*Br   54 :G4HIT_MAGNET.fBits : UInt_t fBits[G4HIT_MAGNET_]                   *
+*Entries :        5 : Total  Size=     220581 bytes  File Size  =       1705 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 129.00     *
+*............................................................................*
+*Br   55 :G4HIT_MAGNET.x[2] : Float_t x[G4HIT_MAGNET_]                       *
+*Entries :        5 : Total  Size=     440043 bytes  File Size  =     317444 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.38     *
+*............................................................................*
+*Br   56 :G4HIT_MAGNET.y[2] : Float_t y[G4HIT_MAGNET_]                       *
+*Entries :        5 : Total  Size=     440043 bytes  File Size  =     316610 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.39     *
+*............................................................................*
+*Br   57 :G4HIT_MAGNET.z[2] : Float_t z[G4HIT_MAGNET_]                       *
+*Entries :        5 : Total  Size=     440043 bytes  File Size  =     318486 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.38     *
+*............................................................................*
+*Br   58 :G4HIT_MAGNET.t[2] : Float_t t[G4HIT_MAGNET_]                       *
+*Entries :        5 : Total  Size=     440043 bytes  File Size  =     321200 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.37     *
+*............................................................................*
+*Br   59 :G4HIT_MAGNET.hitid : ULong64_t hitid[G4HIT_MAGNET_]                *
+*Entries :        5 : Total  Size=     440061 bytes  File Size  =      86403 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   5.09     *
+*............................................................................*
+*Br   60 :G4HIT_MAGNET.trackid : Int_t trackid[G4HIT_MAGNET_]                *
+*Entries :        5 : Total  Size=     220599 bytes  File Size  =      95080 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   2.31     *
+*............................................................................*
+*Br   61 :G4HIT_MAGNET.showerid : Int_t showerid[G4HIT_MAGNET_]              *
+*Entries :        5 : Total  Size=     220608 bytes  File Size  =       5134 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=  42.84     *
+*............................................................................*
+*Br   62 :G4HIT_MAGNET.edep : Float_t edep[G4HIT_MAGNET_]                    *
+*Entries :        5 : Total  Size=     220572 bytes  File Size  =     191939 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   63 :G4HIT_MAGNET.prop_map :                                            *
+*         | map<unsigned char,unsigned int> prop_map[G4HIT_MAGNET_]          *
+*Entries :        5 : Total  Size=    2415448 bytes  File Size  =    1238016 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.95     *
+*............................................................................*
+*Br   64 :G4HIT_MAGNET.eion : Float_t eion[G4HIT_MAGNET_]                    *
+*Entries :        5 : Total  Size=     220572 bytes  File Size  =     190165 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.16     *
+*............................................................................*
+*Br   65 :G4HIT_MAGNET.scint_id : Int_t scint_id[G4HIT_MAGNET_]              *
+*Entries :        5 : Total  Size=     220608 bytes  File Size  =       1708 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 128.79     *
+*............................................................................*
+*Br   66 :G4HIT_MAGNET.light_yield : Float_t light_yield[G4HIT_MAGNET_]      *
+*Entries :        5 : Total  Size=     220635 bytes  File Size  =       1727 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 127.38     *
+*............................................................................*
+*Br   67 :G4HIT_MAGNET.path_length : Float_t path_length[G4HIT_MAGNET_]      *
+*Entries :        5 : Total  Size=     220635 bytes  File Size  =       1727 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 127.38     *
+*............................................................................*
+*Br   68 :n_G4HIT_BH_1 : n_G4HIT_BH_1/I                                      *
+*Entries :        5 : Total  Size=        609 bytes  File Size  =         96 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   69 :G4HIT_BH_1 : Int_t G4HIT_BH_1_                                     *
+*Entries :        5 : Total  Size=      10109 bytes  File Size  =        122 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   70 :G4HIT_BH_1.fUniqueID : UInt_t fUniqueID[G4HIT_BH_1_]               *
+*Entries :        5 : Total  Size=      30963 bytes  File Size  =        276 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression= 109.88     *
+*............................................................................*
+*Br   71 :G4HIT_BH_1.fBits : UInt_t fBits[G4HIT_BH_1_]                       *
+*Entries :        5 : Total  Size=      30943 bytes  File Size  =        319 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  95.06     *
+*............................................................................*
+*Br   72 :G4HIT_BH_1.x[2] : Float_t x[G4HIT_BH_1_]                           *
+*Entries :        5 : Total  Size=      61319 bytes  File Size  =      41109 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.48     *
+*............................................................................*
+*Br   73 :G4HIT_BH_1.y[2] : Float_t y[G4HIT_BH_1_]                           *
+*Entries :        5 : Total  Size=      61319 bytes  File Size  =      41097 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.48     *
+*............................................................................*
+*Br   74 :G4HIT_BH_1.z[2] : Float_t z[G4HIT_BH_1_]                           *
+*Entries :        5 : Total  Size=      61319 bytes  File Size  =      41368 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.47     *
+*............................................................................*
+*Br   75 :G4HIT_BH_1.t[2] : Float_t t[G4HIT_BH_1_]                           *
+*Entries :        5 : Total  Size=      61319 bytes  File Size  =      40308 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   1.51     *
+*............................................................................*
+*Br   76 :G4HIT_BH_1.hitid : ULong64_t hitid[G4HIT_BH_1_]                    *
+*Entries :        5 : Total  Size=      61335 bytes  File Size  =      11788 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   5.15     *
+*............................................................................*
+*Br   77 :G4HIT_BH_1.trackid : Int_t trackid[G4HIT_BH_1_]                    *
+*Entries :        5 : Total  Size=      30953 bytes  File Size  =      14872 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.04     *
+*............................................................................*
+*Br   78 :G4HIT_BH_1.showerid : Int_t showerid[G4HIT_BH_1_]                  *
+*Entries :        5 : Total  Size=      30958 bytes  File Size  =       1093 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  27.75     *
+*............................................................................*
+*Br   79 :G4HIT_BH_1.edep : Float_t edep[G4HIT_BH_1_]                        *
+*Entries :        5 : Total  Size=      30938 bytes  File Size  =      28352 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br   80 :G4HIT_BH_1.prop_map :                                              *
+*         | map<unsigned char,unsigned int> prop_map[G4HIT_BH_1_]            *
+*Entries :        5 : Total  Size=     295752 bytes  File Size  =     120882 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   2.44     *
+*............................................................................*
+*Br   81 :G4HIT_BH_1.eion : Float_t eion[G4HIT_BH_1_]                        *
+*Entries :        5 : Total  Size=      30938 bytes  File Size  =        291 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression= 104.20     *
+*............................................................................*
+*Br   82 :G4HIT_BH_1.scint_id : Int_t scint_id[G4HIT_BH_1_]                  *
+*Entries :        5 : Total  Size=      30958 bytes  File Size  =        295 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression= 102.80     *
+*............................................................................*
+*Br   83 :G4HIT_BH_1.light_yield : Float_t light_yield[G4HIT_BH_1_]          *
+*Entries :        5 : Total  Size=      30973 bytes  File Size  =        298 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression= 101.78     *
+*............................................................................*
+*Br   84 :G4HIT_BH_1.path_length : Float_t path_length[G4HIT_BH_1_]          *
+*Entries :        5 : Total  Size=      30973 bytes  File Size  =        298 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression= 101.78     *
+*............................................................................*
+*Br   85 :n_G4HIT_BH_FORWARD_PLUS : n_G4HIT_BH_FORWARD_PLUS/I                *
+*Entries :        5 : Total  Size=        664 bytes  File Size  =        107 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   86 :G4HIT_BH_FORWARD_PLUS : Int_t G4HIT_BH_FORWARD_PLUS_               *
+*Entries :        5 : Total  Size=      10846 bytes  File Size  =        133 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   87 :G4HIT_BH_FORWARD_PLUS.fUniqueID :                                  *
+*         | UInt_t fUniqueID[G4HIT_BH_FORWARD_PLUS_]                         *
+*Entries :        5 : Total  Size=        964 bytes  File Size  =        133 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.98     *
+*............................................................................*
+*Br   88 :G4HIT_BH_FORWARD_PLUS.fBits : UInt_t fBits[G4HIT_BH_FORWARD_PLUS_] *
+*Entries :        5 : Total  Size=        944 bytes  File Size  =        146 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.77     *
+*............................................................................*
+*Br   89 :G4HIT_BH_FORWARD_PLUS.x[2] : Float_t x[G4HIT_BH_FORWARD_PLUS_]     *
+*Entries :        5 : Total  Size=       1070 bytes  File Size  =        358 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   90 :G4HIT_BH_FORWARD_PLUS.y[2] : Float_t y[G4HIT_BH_FORWARD_PLUS_]     *
+*Entries :        5 : Total  Size=       1070 bytes  File Size  =        363 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   91 :G4HIT_BH_FORWARD_PLUS.z[2] : Float_t z[G4HIT_BH_FORWARD_PLUS_]     *
+*Entries :        5 : Total  Size=       1070 bytes  File Size  =        137 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.91     *
+*............................................................................*
+*Br   92 :G4HIT_BH_FORWARD_PLUS.t[2] : Float_t t[G4HIT_BH_FORWARD_PLUS_]     *
+*Entries :        5 : Total  Size=       1070 bytes  File Size  =        339 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.17     *
+*............................................................................*
+*Br   93 :G4HIT_BH_FORWARD_PLUS.hitid :                                      *
+*         | ULong64_t hitid[G4HIT_BH_FORWARD_PLUS_]                          *
+*Entries :        5 : Total  Size=       1084 bytes  File Size  =        173 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.31     *
+*............................................................................*
+*Br   94 :G4HIT_BH_FORWARD_PLUS.trackid :                                    *
+*         | Int_t trackid[G4HIT_BH_FORWARD_PLUS_]                            *
+*Entries :        5 : Total  Size=        954 bytes  File Size  =        248 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.05     *
+*............................................................................*
+*Br   95 :G4HIT_BH_FORWARD_PLUS.showerid :                                   *
+*         | Int_t showerid[G4HIT_BH_FORWARD_PLUS_]                           *
+*Entries :        5 : Total  Size=        959 bytes  File Size  =        178 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.47     *
+*............................................................................*
+*Br   96 :G4HIT_BH_FORWARD_PLUS.edep : Float_t edep[G4HIT_BH_FORWARD_PLUS_]  *
+*Entries :        5 : Total  Size=        939 bytes  File Size  =        258 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br   97 :G4HIT_BH_FORWARD_PLUS.prop_map :                                   *
+*         | map<unsigned char,unsigned int> prop_map[G4HIT_BH_FORWARD_PLUS_] *
+*Entries :        5 : Total  Size=       2224 bytes  File Size  =        976 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.56     *
+*............................................................................*
+*Br   98 :G4HIT_BH_FORWARD_PLUS.eion : Float_t eion[G4HIT_BH_FORWARD_PLUS_]  *
+*Entries :        5 : Total  Size=        939 bytes  File Size  =        133 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.94     *
+*............................................................................*
+*Br   99 :G4HIT_BH_FORWARD_PLUS.scint_id :                                   *
+*         | Int_t scint_id[G4HIT_BH_FORWARD_PLUS_]                           *
+*Entries :        5 : Total  Size=        959 bytes  File Size  =        137 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.91     *
+*............................................................................*
+*Br  100 :G4HIT_BH_FORWARD_PLUS.light_yield :                                *
+*         | Float_t light_yield[G4HIT_BH_FORWARD_PLUS_]                      *
+*Entries :        5 : Total  Size=        974 bytes  File Size  =        140 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.89     *
+*............................................................................*
+*Br  101 :G4HIT_BH_FORWARD_PLUS.path_length :                                *
+*         | Float_t path_length[G4HIT_BH_FORWARD_PLUS_]                      *
+*Entries :        5 : Total  Size=        974 bytes  File Size  =        140 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.89     *
+*............................................................................*
+*Br  102 :n_G4HIT_BH_FORWARD_NEG : n_G4HIT_BH_FORWARD_NEG/I                  *
+*Entries :        5 : Total  Size=        659 bytes  File Size  =        106 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br  103 :G4HIT_BH_FORWARD_NEG : Int_t G4HIT_BH_FORWARD_NEG_                 *
+*Entries :        5 : Total  Size=      10779 bytes  File Size  =        129 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.02     *
+*............................................................................*
+*Br  104 :G4HIT_BH_FORWARD_NEG.fUniqueID :                                   *
+*         | UInt_t fUniqueID[G4HIT_BH_FORWARD_NEG_]                          *
+*Entries :        5 : Total  Size=        889 bytes  File Size  =        129 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.50     *
+*............................................................................*
+*Br  105 :G4HIT_BH_FORWARD_NEG.fBits : UInt_t fBits[G4HIT_BH_FORWARD_NEG_]   *
+*Entries :        5 : Total  Size=        869 bytes  File Size  =        134 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.42     *
+*............................................................................*
+*Br  106 :G4HIT_BH_FORWARD_NEG.x[2] : Float_t x[G4HIT_BH_FORWARD_NEG_]       *
+*Entries :        5 : Total  Size=        927 bytes  File Size  =        247 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br  107 :G4HIT_BH_FORWARD_NEG.y[2] : Float_t y[G4HIT_BH_FORWARD_NEG_]       *
+*Entries :        5 : Total  Size=        927 bytes  File Size  =        245 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br  108 :G4HIT_BH_FORWARD_NEG.z[2] : Float_t z[G4HIT_BH_FORWARD_NEG_]       *
+*Entries :        5 : Total  Size=        927 bytes  File Size  =        130 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.01     *
+*............................................................................*
+*Br  109 :G4HIT_BH_FORWARD_NEG.t[2] : Float_t t[G4HIT_BH_FORWARD_NEG_]       *
+*Entries :        5 : Total  Size=        927 bytes  File Size  =        235 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  110 :G4HIT_BH_FORWARD_NEG.hitid : ULong64_t hitid[G4HIT_BH_FORWARD_NEG_]*
+*Entries :        5 : Total  Size=        941 bytes  File Size  =        149 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.76     *
+*............................................................................*
+*Br  111 :G4HIT_BH_FORWARD_NEG.trackid : Int_t trackid[G4HIT_BH_FORWARD_NEG_]*
+*Entries :        5 : Total  Size=        879 bytes  File Size  =        192 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br  112 :G4HIT_BH_FORWARD_NEG.showerid :                                    *
+*         | Int_t showerid[G4HIT_BH_FORWARD_NEG_]                            *
+*Entries :        5 : Total  Size=        884 bytes  File Size  =        153 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.26     *
+*............................................................................*
+*Br  113 :G4HIT_BH_FORWARD_NEG.edep : Float_t edep[G4HIT_BH_FORWARD_NEG_]    *
+*Entries :        5 : Total  Size=        864 bytes  File Size  =        189 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br  114 :G4HIT_BH_FORWARD_NEG.prop_map :                                    *
+*         | map<unsigned char,unsigned int> prop_map[G4HIT_BH_FORWARD_NEG_]  *
+*Entries :        5 : Total  Size=       1554 bytes  File Size  =        594 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.45     *
+*............................................................................*
+*Br  115 :G4HIT_BH_FORWARD_NEG.eion : Float_t eion[G4HIT_BH_FORWARD_NEG_]    *
+*Entries :        5 : Total  Size=        864 bytes  File Size  =        130 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.45     *
+*............................................................................*
+*Br  116 :G4HIT_BH_FORWARD_NEG.scint_id :                                    *
+*         | Int_t scint_id[G4HIT_BH_FORWARD_NEG_]                            *
+*Entries :        5 : Total  Size=        884 bytes  File Size  =        133 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.45     *
+*............................................................................*
+*Br  117 :G4HIT_BH_FORWARD_NEG.light_yield :                                 *
+*         | Float_t light_yield[G4HIT_BH_FORWARD_NEG_]                       *
+*Entries :        5 : Total  Size=        899 bytes  File Size  =        137 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.43     *
+*............................................................................*
+*Br  118 :G4HIT_BH_FORWARD_NEG.path_length :                                 *
+*         | Float_t path_length[G4HIT_BH_FORWARD_NEG_]                       *
+*Entries :        5 : Total  Size=        899 bytes  File Size  =        137 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.43     *
+*............................................................................*
+*Br  119 :n_PHG4Particle : n_PHG4Particle/I                                  *
+*Entries :        5 : Total  Size=        619 bytes  File Size  =         98 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br  120 :PHG4Particle : Int_t PHG4Particle_                                 *
+*Entries :        5 : Total  Size=       9090 bytes  File Size  =        124 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br  121 :PHG4Particle.fUniqueID : UInt_t fUniqueID[PHG4Particle_]           *
+*Entries :        5 : Total  Size=     280313 bytes  File Size  =       1850 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 151.17     *
+*............................................................................*
+*Br  122 :PHG4Particle.fBits : UInt_t fBits[PHG4Particle_]                   *
+*Entries :        5 : Total  Size=     280277 bytes  File Size  =       1996 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 140.10     *
+*............................................................................*
+*Br  123 :PHG4Particle.fname : string fname[PHG4Particle_]                   *
+*Entries :        5 : Total  Size=     262116 bytes  File Size  =      33260 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   7.86     *
+*............................................................................*
+*Br  124 :PHG4Particle.fpid : Int_t fpid[PHG4Particle_]                      *
+*Entries :        5 : Total  Size=     280268 bytes  File Size  =      33594 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   8.32     *
+*............................................................................*
+*Br  125 :PHG4Particle.fpx : Double_t fpx[PHG4Particle_]                     *
+*Entries :        5 : Total  Size=     559435 bytes  File Size  =     541596 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.03     *
+*............................................................................*
+*Br  126 :PHG4Particle.fpy : Double_t fpy[PHG4Particle_]                     *
+*Entries :        5 : Total  Size=     559435 bytes  File Size  =     541578 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.03     *
+*............................................................................*
+*Br  127 :PHG4Particle.fpz : Double_t fpz[PHG4Particle_]                     *
+*Entries :        5 : Total  Size=     559435 bytes  File Size  =     541540 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.03     *
+*............................................................................*
+*Br  128 :PHG4Particle.barcode : Int_t barcode[PHG4Particle_]                *
+*Entries :        5 : Total  Size=     280295 bytes  File Size  =       1842 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 151.82     *
+*............................................................................*
+*Br  129 :PHG4Particle.trkid : Int_t trkid[PHG4Particle_]                    *
+*Entries :        5 : Total  Size=     280277 bytes  File Size  =     102509 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   2.73     *
+*............................................................................*
+*Br  130 :PHG4Particle.vtxid : Int_t vtxid[PHG4Particle_]                    *
+*Entries :        5 : Total  Size=     280277 bytes  File Size  =     104638 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   2.67     *
+*............................................................................*
+*Br  131 :PHG4Particle.parentid : Int_t parentid[PHG4Particle_]              *
+*Entries :        5 : Total  Size=     280304 bytes  File Size  =      59611 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   4.69     *
+*............................................................................*
+*Br  132 :PHG4Particle.primaryid : Int_t primaryid[PHG4Particle_]            *
+*Entries :        5 : Total  Size=     280313 bytes  File Size  =       4000 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=  69.92     *
+*............................................................................*
+*Br  133 :PHG4Particle.fe : Double_t fe[PHG4Particle_]                       *
+*Entries :        5 : Total  Size=     559426 bytes  File Size  =     519194 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br  134 :n_PHG4VtxPoint : n_PHG4VtxPoint/I                                  *
+*Entries :        5 : Total  Size=        619 bytes  File Size  =         98 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br  135 :PHG4VtxPoint : Int_t PHG4VtxPoint_                                 *
+*Entries :        5 : Total  Size=       5368 bytes  File Size  =        124 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br  136 :PHG4VtxPoint.fUniqueID : UInt_t fUniqueID[PHG4VtxPoint_]           *
+*Entries :        5 : Total  Size=     254841 bytes  File Size  =       1740 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 146.09     *
+*............................................................................*
+*Br  137 :PHG4VtxPoint.fBits : UInt_t fBits[PHG4VtxPoint_]                   *
+*Entries :        5 : Total  Size=     254805 bytes  File Size  =       1871 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression= 135.85     *
+*............................................................................*
+*Br  138 :PHG4VtxPoint.vx : Double_t vx[PHG4VtxPoint_]                       *
+*Entries :        5 : Total  Size=     508482 bytes  File Size  =     479367 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br  139 :PHG4VtxPoint.vy : Double_t vy[PHG4VtxPoint_]                       *
+*Entries :        5 : Total  Size=     508482 bytes  File Size  =     478941 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br  140 :PHG4VtxPoint.vz : Double_t vz[PHG4VtxPoint_]                       *
+*Entries :        5 : Total  Size=     508482 bytes  File Size  =     480876 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br  141 :PHG4VtxPoint.t0 : Double_t t0[PHG4VtxPoint_]                       *
+*Entries :        5 : Total  Size=     508482 bytes  File Size  =     478675 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br  142 :PHG4VtxPoint.id : Int_t id[PHG4VtxPoint_]                          *
+*Entries :        5 : Total  Size=     254778 bytes  File Size  =      93661 *
+*Baskets :        5 : Basket Size=      32000 bytes  Compression=   2.71     *
+*............................................................................*
