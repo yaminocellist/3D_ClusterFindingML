@@ -8,7 +8,8 @@ set -euo pipefail
 IMG=/cvmfs/sphenix.opensciencegrid.org/singularity/rhic_sl7_ext
 SETUP=/cvmfs/sphenix.opensciencegrid.org/gcc-8.3/opt/sphenix/core/bin/sphenix_setup.sh
 MACRODIR="$HOME/sPHENIX/3D_ClusterFindingML/macros-offline/detectors/sPHENIX"
-MACRO="${1:-plot_trackers_ver2.C}"
+COMMON="$HOME/sPHENIX/3D_ClusterFindingML/macros-offline/common"
+MACRO="${1:-Fun4All_DistortionSim.C}"
 CDB_DIR="$HOME/sPHENIX/3D_ClusterFindingML/CDB_offline"
 
 echo "========================================="
@@ -46,8 +47,19 @@ elif [ "$CDB_CHOICE" -gt 1 ] && [ "$CDB_CHOICE" -lt "$idx" ]; then
     # Array index is Choice - 2
     arr_idx=$((CDB_CHOICE - 2))
     selected_file="${files[$arr_idx]}"
-    echo "--> Copying ${selected_file} to localAlignmentParamsFile.txt"
-    cp "${selected_file}" ./localAlignmentParamsFile.txt
+    # The batch run cd's to $MACRODIR before launching root, and AlignmentTransformation
+    # reads "./localAlignmentParamsFile.txt" from that CWD, so stage it there.
+    #
+    # TRANSCODE for ana.331 compatibility: newer dumps (ana494/ana537/...) write some
+    # rows in the 10-column format (hitsetkey + 6 local params + 3 NEW global-rotation
+    # params). ana.331's AlignmentTransformation only understands the 7-column format and
+    # SIGSEGVs on the extra columns. We keep only the first 7 fields (the real local
+    # alignment values are preserved; the keys are identical across builds), producing a
+    # file ana.331 reads natively. ana331_* files are already 7-column, so this is a no-op
+    # for them. This makes ANY alignment option safe -- no crash regardless of build.
+    echo "--> Transcoding $(basename "${selected_file}") -> 7-column ana.331 alignment"
+    awk 'NF>=7{print $1, $2, $3, $4, $5, $6, $7}' "${selected_file}" > "$MACRODIR/localAlignmentParamsFile.txt"
+    echo "    wrote ${MACRODIR}/localAlignmentParamsFile.txt ($(wc -l < "$MACRODIR/localAlignmentParamsFile.txt") rows)"
 else
     echo "Invalid choice. Defaulting to OFFLINE mode."
     export USE_CDB_OFFLINE=0
@@ -89,6 +101,8 @@ fi
 
 BINDS=(-B /cvmfs:/cvmfs)
 
-# Run ROOT in batch mode (-b -q)
+# Run ROOT in batch mode (-b -q).
+# ROOT_INCLUDE_PATH must include macros-offline/common so the LOCAL G4_TPC.C (distortions
+# ON, merged static+module-edge map) is used instead of the CVMFS default (distortions OFF).
 exec singularity exec "${BINDS[@]}" "$IMG" \
-  bash -lc "source '$SETUP' -n ana.331 >/dev/null 2>&1; cd '$MACRODIR' && root -b -q '${MACRO}(${NEVENTS}, \"\", \"${OUTPUT_FILE}\")'"
+  bash -lc "source '$SETUP' -n ana.331 >/dev/null 2>&1; export ROOT_INCLUDE_PATH='$COMMON':'$MACRODIR':\$ROOT_INCLUDE_PATH; cd '$MACRODIR' && root -b -q '${MACRO}(${NEVENTS}, \"\", \"${OUTPUT_FILE}\")'"

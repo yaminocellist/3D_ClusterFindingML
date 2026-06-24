@@ -1,6 +1,7 @@
 # Large Data Files
 *.root
 *.ntuple
+localAlignmentParamsFile.txt
 
 # Python
 __pycache__/

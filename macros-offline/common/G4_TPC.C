@@ -74,8 +74,14 @@ namespace G4TPC
   bool USE_SIMPLE_CLUSTERIZER = false;
 
   // distortions
+  // static_distortion_filename is the map fed to PHG4TpcDistortion during electron drift
+  // (SIMULATION). It is the static-only map MERGED with the TPC module-edge residual map
+  // (see merge_module_edge.C) so the module-edge (RPhi) distortion is baked into the
+  // simulated TRKR_HITSET/clusters rather than applied as a reco correction.
+  // To revert to static-only, point this back at:
+  //   .../5a/3d/5a3d0b9b5268b8bc6921ddd16e801c8f_static_only.distortion_map.hist.root
   bool ENABLE_STATIC_DISTORTIONS = true;
-  auto static_distortion_filename = std::string("/home/yaminocellist/sPHENIX/3D_ClusterFindingML/CDB_offline/TPC_STATIC_DISTORTION/5a/3d/5a3d0b9b5268b8bc6921ddd16e801c8f_static_only.distortion_map.hist.root");
+  auto static_distortion_filename = std::string("/home/yaminocellist/sPHENIX/3D_ClusterFindingML/CDB_offline/TPC_STATIC_DISTORTION_with_ModuleEdge.root");
 
   bool ENABLE_TIME_ORDERED_DISTORTIONS = true;
   std::string time_ordered_distortion_filename = std::string("/home/yaminocellist/sPHENIX/3D_ClusterFindingML/CDB_offline/TPC_TIMEORDERED_DISTORTION/51/72/51725df52f40ba2f3b5208fdd1bd39c2_TimeOrderedDistortions.root");
@@ -85,7 +91,10 @@ namespace G4TPC
   auto correction_filename = std::string("/home/yaminocellist/sPHENIX/3D_ClusterFindingML/CDB_offline/TPC_STATIC_CORRECTION_MODEL/ec/7b/ec7bd756f9fc7274af6b479ee39580e3_static_only_inverted_10-new.root");
 
   // module-edge distortion corrections (loaded into slot 1 of TpcLoadDistortionCorrection)
-  bool ENABLE_MODULE_EDGE_CORRECTIONS = true;
+  // DISABLED: module-edge is now applied during SIMULATION (merged into
+  // static_distortion_filename above), not as a reco correction. Re-enabling this would
+  // correct the module-edge distortion back out at tracking time, defeating the purpose.
+  bool ENABLE_MODULE_EDGE_CORRECTIONS = false;
   auto module_edge_correction_filename = std::string("/home/yaminocellist/sPHENIX/3D_ClusterFindingML/CDB_offline/TPC_Module_Edge/90/c9/90c95346a3e25a7a0753d71c46becbc6_residual_map_field_layers10iter_2D_acts_static_enabled.hist.root");
 
   // enable central membrane g4hits generation
